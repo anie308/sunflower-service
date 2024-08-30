@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
     },
     hasCabal: {
       type: Boolean,
-      default: false
+      default: false,
     },
     autoTapEndTime: { type: Date, default: null },
     autoTapPaused: { type: Boolean, default: false },
