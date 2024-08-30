@@ -1,0 +1,86 @@
+import { Telegraf, Markup } from "telegraf";
+const token = process.env.TELEGRAM_BOT_TOKEN;
+const serverUrl = process.env.SERVER_URL;
+
+const bot = new Telegraf(token);
+import axios from "axios";
+
+const getProfilePicture = async (userId: any) => {
+  try {
+    const photos = await bot.telegram.getUserProfilePhotos(userId);
+    if (photos.total_count > 0) {
+      const fileId = photos.photos[0][0].file_id;
+      const file = await bot.telegram.getFile(fileId);
+      return `https://api.telegram.org/file/bot${token}/${file.file_path}`;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error getting profile photo:", error);
+    return null;
+  }
+};
+
+const imageUrl =
+  "https://res.cloudinary.com/wallnet/image/upload/v1723275857/tuts_psxhzl.jpg";
+
+// Start command
+bot.start(async (ctx) => {
+  const referralCode = ctx.payload;
+  const username = ctx.from.username;
+  const profilePicture = await getProfilePicture(ctx.from.id);
+
+  try {
+    const res = await axios.post(`${serverUrl}/api/user/register`, {
+      username,
+      referralCode,
+      profilePicture,
+    });
+
+    if (res.status === 200 || res.status === 201) {
+      ctx.replyWithPhoto(
+        { url: imageUrl },
+        {
+          caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}!`,
+          reply_markup: {
+            inline_keyboard: [
+              [Markup.button.url("💪💋 Join community", `https://t.me`)],
+              [Markup.button.url("OnionAI on X", "https://x.com/")],
+              // [
+              //   Markup.button.webApp(
+              //     "🔥 Play now!",
+              //     `https://d34d-102-90-67-173.ngrok-free.app`
+              //   ),
+              // ],
+              [
+                Markup.button.webApp(
+                  "🔥 Brawl now!",
+                  `https://sunflower-flame.vercel.app/`
+                ),
+              ],
+            ],
+          },
+        }
+      );
+    }
+  } catch (error) {
+    console.log("Error registering user:", error);
+    // ctx.reply("Internal server error");
+  }
+
+  console.log("started");
+});
+
+// Handle button clicks
+bot.action("start_now", (ctx) => ctx.reply('You clicked "Start now!"'));
+bot.action("join_community", (ctx) =>
+  ctx.reply('You clicked "Join community"')
+);
+bot.action("help", (ctx) => ctx.reply('You clicked "Help"'));
+
+// Launch the bot
+
+// Graceful shutdown
+process.once("SIGINT", () => bot.stop("SIGINT"));
+process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+export default bot;
