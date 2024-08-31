@@ -22,15 +22,15 @@ const getProfilePicture = async (userId: any) => {
   }
 };
 
-const imageUrl =
-  "https://res.cloudinary.com/wallnet/image/upload/v1723275857/tuts_psxhzl.jpg";
+
 
 // Start command
 bot.start(async (ctx) => {
   const referralCode = ctx.payload;
   const username = ctx.from.username;
   const profilePicture = await getProfilePicture(ctx.from.id);
-
+  const imageUrl =
+  "https://res.cloudinary.com/wallnet/image/upload/v1725063891/tuts_isfwcy.jpg";
   try {
     const res = await axios.post(`${serverUrl}/api/user/register`, {
       username,
