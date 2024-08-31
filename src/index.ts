@@ -8,9 +8,9 @@ import bot from "./bot";
 import WebSocketService from "./ws";
 const app = express();
 const port = process.env.PORT || 4000;
-// import userRoute from "./routes/user.route";
-// import taskRouter from "./routes/task.route";
-// import pingRouter from "./routes/ping.route";
+import userRoute from "./routes/user.route";
+import taskRouter from "./routes/task.route";
+import pingRouter from "./routes/ping.route";
 // import cabalRouter from "./routes/cabal.route";
 
 //express app
@@ -34,9 +34,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use("/api/user", userRoute);
-// app.use("/api/task", taskRouter);
-// app.use("/api/ping", pingRouter);
+app.use("/api/user", userRoute);
+app.use("/api/task", taskRouter);
+app.use("/api/ping", pingRouter);
 // app.use("/api/cabal", cabalRouter);
 
 const server = http.createServer(app);
