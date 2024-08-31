@@ -5,7 +5,7 @@ import http from "http";
 import morgan from "morgan";
 import "./db";
 import bot from "./bot";
-// import WebSocketService from "./ws";
+import WebSocketService from "./ws";
 const app = express();
 const port = process.env.PORT || 4000;
 // import userRoute from "./routes/user.route";
@@ -21,7 +21,7 @@ app.use(morgan("dev"));
 app.use((req, res, next) => {
   const allowedOrigins = [
     "https://sunflower-flame.vercel.app/",
-    "https://5a11-197-210-55-48.ngrok-free.app",
+    // "https://5a11-197-210-55-48.ngrok-free.app",
     // Add more allowed origins as needed
   ];
 
@@ -40,7 +40,7 @@ app.use((req, res, next) => {
 // app.use("/api/cabal", cabalRouter);
 
 const server = http.createServer(app);
-// WebSocketService(server);
+WebSocketService(server);
 
 server.listen(port, () => {
   console.log(`Server listening on port localhost:${port}`);
