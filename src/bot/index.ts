@@ -11,7 +11,9 @@ const getProfilePicture = async (userId: any) => {
     if (photos.total_count > 0) {
       const fileId = photos.photos[0][0].file_id;
       const file = await bot.telegram.getFile(fileId);
-      return `https://api.telegram.org/file/bot${token}/${file.file_path}`;
+      const profilePictureUrl = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
+      console.log("Profile Picture URL:", profilePictureUrl); // Add this line
+      return profilePictureUrl;
     }
     return null;
   } catch (error) {
@@ -45,12 +47,6 @@ bot.start(async (ctx) => {
             inline_keyboard: [
               [Markup.button.url("💪💋 Join community", `https://t.me`)],
               [Markup.button.url("OnionAI on X", "https://x.com/")],
-              // [
-              //   Markup.button.webApp(
-              //     "🔥 Play now!",
-              //     `https://d34d-102-90-67-173.ngrok-free.app`
-              //   ),
-              // ],
               [
                 Markup.button.webApp(
                   "🔥 Brawl now!",
