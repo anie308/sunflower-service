@@ -22,15 +22,13 @@ const getProfilePicture = async (userId: any) => {
   }
 };
 
-
-
 // Start command
 bot.start(async (ctx) => {
   const referralCode = ctx.payload;
   const username = ctx.from.username;
   const profilePicture = await getProfilePicture(ctx.from.id);
   const imageUrl =
-  "https://res.cloudinary.com/wallnet/image/upload/v1725063891/tuts_isfwcy.jpg";
+    "https://res.cloudinary.com/wallnet/image/upload/v1725063891/tuts_isfwcy.jpg";
   try {
     const res = await axios.post(`${serverUrl}/api/user/register`, {
       username,
@@ -50,9 +48,15 @@ bot.start(async (ctx) => {
               [
                 Markup.button.webApp(
                   "🔥 Brawl now!",
-                  `https://sunflower-flame.vercel.app/`
+                  `https://81f5-197-210-84-218.ngrok-free.app/`
                 ),
               ],
+              // [
+              //   Markup.button.webApp(
+              //     "🔥 Brawl now!",
+              //     `https://sunflower-flame.vercel.app/`
+              //   ),
+              // ],
             ],
           },
         }
