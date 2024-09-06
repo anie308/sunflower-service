@@ -47,8 +47,8 @@ bot.start(async (ctx) => {
               [Markup.button.url("OnionAI on X", "https://x.com/")],
               [
                 Markup.button.webApp(
-                  "🔥 Brawl now!",
-                  `https://9bea-197-210-227-108.ngrok-free.app`
+                  "🔥Brawl now!",
+                  `https://c8fa-197-210-227-108.ngrok-free.app`
                 ),
               ],
               // [
