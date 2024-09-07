@@ -48,7 +48,7 @@ bot.start(async (ctx) => {
               [
                 Markup.button.webApp(
                   "🔥Brawl now!",
-                  `https://ce95-102-90-65-75.ngrok-free.app`
+                  `https://0624-102-90-65-75.ngrok-free.app`
                 ),
               ],
               // [
