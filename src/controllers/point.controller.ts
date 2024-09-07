@@ -1,6 +1,7 @@
 import User from "../model/user.model";
 import Point from "../model/points.model";
 import { PointsTypes } from "../types";
+import { Request, Response } from "express";
 
 export const addPoints = async (message: PointsTypes) => {
   const { points, username } = message;
@@ -34,6 +35,19 @@ export const saveTimeStamps = async (message) => {
     const points = await Point.findOne({ userId: user._id });
     points.energyStamp = timestamp;
     await points.save();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getLeaderBoard = async (req: Request, res: Response) => {
+  try {
+    const points = await Point.find().sort({ points: -1 }).limit(10);
+    res.json({
+      status: true,
+      data: points,
+      message: "Leaderboard fetched successfully",
+    });
   } catch (error) {
     console.log(error);
   }
