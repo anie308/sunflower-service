@@ -43,8 +43,8 @@ bot.start(async (ctx) => {
           caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}!`,
           reply_markup: {
             inline_keyboard: [
-              [Markup.button.url("💪💋 Join community", `https://t.me`)],
-              [Markup.button.url("OnionAI on X", "https://x.com/")],
+              [Markup.button.url("💪💋 Join community", `https://t.me/sunflower_coin`)],
+              [Markup.button.url("Sunflower on X", "https://www.x.com/Sunflower_Coin")],
               // [
               //   Markup.button.webApp(
               //     "🔥Brawl now!",
