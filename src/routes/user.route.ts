@@ -1,5 +1,5 @@
 const router = require("express").Router();
-import { getLeaderBoard } from "controllers/point.controller";
+import { getLeaderBoard } from "../controllers/point.controller";
 import { getReferredUsers, getUser, registerUser } from "../controllers/user.controller";
 
 router.post("/register", registerUser);
