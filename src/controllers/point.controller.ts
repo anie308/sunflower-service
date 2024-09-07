@@ -40,15 +40,44 @@ export const saveTimeStamps = async (message) => {
   }
 };
 
+// export const getLeaderBoard = async (req: Request, res: Response) => {
+//   try {
+//     const points = await Point.find().sort({ points: -1 }).limit(10);
+//     const users = await User.find();
+//     res.json({
+//       status: true,
+//       data: points,
+//       message: "Leaderboard fetched successfully",
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export const getLeaderBoard = async (req: Request, res: Response) => {
   try {
-    const points = await Point.find().sort({ points: -1 }).limit(10);
+    // Get the top 50 users with the highest points
+    const leaderboard = await Point.find()
+      .sort({ points: -1 }) // Sort by points in descending order
+      .limit(50) // Limit to top 50
+      .populate("userId", "username profilePicture level")
+      .lean();
+    // Populate user details (replace 'name email' with actual fields from User model)
+    const result = leaderboard.map((entry) => ({
+      user: entry.userId, // This will contain the populated user details
+      points: entry.points, // The user's points
+    }));
+
     res.json({
       status: true,
-      data: points,
+      data: result,
       message: "Leaderboard fetched successfully",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching leaderboard:", error);
+    res.status(500).json({
+      status: false,
+      message: "An error occurred while fetching the leaderboard",
+    });
   }
 };
