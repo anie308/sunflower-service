@@ -116,3 +116,23 @@ export const getReferredUsers = async (req: Request, res: Response) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// export const updateUser = async (req: Request, res: Response) => {
+//   const { username,  level } = req.body;
+
+//   try {
+//     const user = await User.findOne({ username });
+
+//     if (!user) {
+//       return res.status(400).json({ error: "User not found" });
+//     }
+
+//     if (level !== undefined) user.level = level;
+
+//   } catch (error) {
+//     res.json({
+//       error: error||  "Internal server error",
+//       status: false,
+//     })
+//   }
+// }
