@@ -45,18 +45,19 @@ bot.start(async (ctx) => {
             inline_keyboard: [
               [Markup.button.url("💪💋 Join community", `https://t.me/sunflower_coin`)],
               [Markup.button.url("Sunflower on X", "https://www.x.com/Sunflower_Coin")],
-              [
+        //     [
+                //Markup.button.webApp(
+                  //🔥Brawl now!",
+            //    `https://e6a3-102-90-65-52.ngrok-free.app`
+              //),
+              //],
+               [
                 Markup.button.webApp(
-                  "🔥Brawl now!",
-                  `https://e6a3-102-90-65-52.ngrok-free.app`
-                ),
-              ],
-              // [
-              //   Markup.button.webApp(
-              //     "🔥 Brawl now!",
-              //     `https://sunflower-flame.vercel.app/`
-              //   ),
-              // ],
+                  "🔥 Brawl now!",
+
+                  `https://sunflower-flame.vercel.app/`
+        ),
+               ],
             ],
           },
         }
