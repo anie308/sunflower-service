@@ -54,7 +54,7 @@ bot.start(async (ctx) => {
               // ],
               [
                 Markup.button.webApp(
-                  "🔥 Brawl now!",
+                  "🔥Brawl now!",
                   `https://sunflower-flame.vercel.app/`
                 ),
               ],
