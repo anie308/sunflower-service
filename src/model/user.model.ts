@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
     referralCode: {
       type: String,
     },
-    hasCabal: {
+    onboarding: {
       type: Boolean,
       default: false,
     },

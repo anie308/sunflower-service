@@ -11,7 +11,7 @@ const WebSocketService = (server: any) => {
   wsServer.on("connection", (socket: any) => {
     console.log("Socket connected");
 
-    socket.on("refill-stamp", async (message: any) => {
+    socket.on("last-tap-stamp", async (message: any) => {
       await saveTimeStamps(message);
       console.log("Message received: ", message);
     });
