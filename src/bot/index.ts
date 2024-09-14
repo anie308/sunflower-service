@@ -28,7 +28,7 @@ bot.start(async (ctx) => {
   const username = ctx.from.username;
   const profilePicture = await getProfilePicture(ctx.from.id);
   const imageUrl =
-    "https://res.cloudinary.com/wallnet/image/upload/v1725063891/tuts_isfwcy.jpg";
+    "https://res.cloudinary.com/wallnet/image/upload/v1726351913/bannerflow_pnnugl.png";
   try {
     const res = await axios.post(`${serverUrl}/api/user/register`, {
       username,
