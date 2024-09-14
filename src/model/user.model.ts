@@ -46,6 +46,12 @@ const userSchema = new mongoose.Schema(
         ref: "Task",
       },
     ],
+    milestonesCompleted: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Milestone",
+      },
+    ],
   },
   { timestamps: true }
 );

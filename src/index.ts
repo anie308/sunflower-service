@@ -11,6 +11,7 @@ const port = process.env.PORT || 4000;
 import userRoute from "./routes/user.route";
 import taskRouter from "./routes/task.route";
 import pingRouter from "./routes/ping.route";
+import milestoneRouter from './routes/milestones.route'
 // import cabalRouter from "./routes/cabal.route";
 
 //express app
@@ -37,6 +38,7 @@ app.use((req, res, next) => {
 app.use("/api/user", userRoute);
 app.use("/api/task", taskRouter);
 app.use("/api/ping", pingRouter);
+app.use("/api/milestone", milestoneRouter);
 // app.use("/api/cabal", cabalRouter);
 
 const server = http.createServer(app);
