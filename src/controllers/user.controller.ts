@@ -117,6 +117,30 @@ export const getReferredUsers = async (req: Request, res: Response) => {
   }
 };
 
+export const saveOnboarding = async (req: Request, res: Response) => {
+  const { username } = req.body;
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ status: false, error: "User not found" });
+    } else {
+      user.onboarding = true;
+      await user.save();
+      return res
+        .status(200)
+        .json({
+          status: true,
+          message: "Onboarding status updated successfully",
+        });
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, error: "Internal server error" });
+  }
+};
+
 // export const updateUser = async (req: Request, res: Response) => {
 //   const { username,  level } = req.body;
 
