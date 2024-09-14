@@ -127,12 +127,10 @@ export const saveOnboarding = async (req: Request, res: Response) => {
     } else {
       user.onboarding = true;
       await user.save();
-      return res
-        .status(200)
-        .json({
-          status: true,
-          message: "Onboarding status updated successfully",
-        });
+      return res.status(200).json({
+        status: true,
+        message: "Onboarding status updated successfully",
+      });
     }
   } catch (error) {
     return res

@@ -40,19 +40,27 @@ export const saveTimeStamps = async (message) => {
   }
 };
 
-// export const getLeaderBoard = async (req: Request, res: Response) => {
-//   try {
-//     const points = await Point.find().sort({ points: -1 }).limit(10);
-//     const users = await User.find();
-//     res.json({
-//       status: true,
-//       data: points,
-//       message: "Leaderboard fetched successfully",
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const getUserPoint = async (req: Request, res: Response) => {
+  const { username } = req.query;
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ status: false, error: "User not found" });
+    }
+    const points = await Point.findOne({ userId: user._id });
+    res.json({
+      status: true,
+      data: points,
+      message: "Points fetched successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: false,
+      message: "An error occurred while fetching points",
+    });
+  }
+};
 
 export const getLeaderBoard = async (req: Request, res: Response) => {
   try {
