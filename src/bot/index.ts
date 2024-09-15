@@ -43,7 +43,7 @@ bot.start(async (ctx) => {
           caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}!`,
           reply_markup: {
             inline_keyboard: [
-              [Markup.button.url("💪💋 Join community", `https://t.me/sunflower_coin`)],
+              [Markup.button.url("Join community", `https://t.me/sunflower_coin`)],
               [Markup.button.url("Sunflower on X", "https://www.x.com/Sunflower_Coin")],
       
               //  [
@@ -54,7 +54,7 @@ bot.start(async (ctx) => {
               // ],
               [
                 Markup.button.webApp(
-                  "🔥Brawl now!",
+                  "Brawl now!",
                   `https://sunflower-flame.vercel.app/`
                 ),
               ],
