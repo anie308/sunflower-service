@@ -70,6 +70,7 @@ export const getUserMileStones = async (req: Request, res: Response) => {
     return res.status(200).json({
       status: true,
       milestones: milestonesWithStatus,
+      message: "User milestones fetched successfully",
     });
   } catch (error) {
     console.error("Error fetching user milestones:", error);
