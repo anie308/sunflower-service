@@ -22,9 +22,7 @@ app.use(morgan("dev"));
 
 app.use((req, res, next) => {
   const allowedOrigins = [
-    "https://sunflower-flame.vercel.app/",
-    // "https://5a11-197-210-55-48.ngrok-free.app",
-    // Add more allowed origins as needed
+    "https://sunflower-flame.vercel.app/"
   ];
 
   const origin = req.headers.origin;
@@ -48,5 +46,5 @@ WebSocketService(server);
 
 server.listen(port, () => {
   console.log(`Server listening on port localhost:${port}`);
-  // bot.launch();
+  bot.launch();
 });
