@@ -48,5 +48,5 @@ WebSocketService(server);
 
 server.listen(port, () => {
   console.log(`Server listening on port localhost:${port}`);
-  bot.launch();
+  // bot.launch();
 });

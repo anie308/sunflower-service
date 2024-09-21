@@ -63,22 +63,54 @@ export const registerUser = async (req: Request, res: Response) => {
   }
 };
 
+// export const getUser = async (req: Request, res: Response) => {
+//   const { username } = req.query;
+//   try {
+//     const user = await User.findOne({ username });
+//     const userPoints = await Point.findOne({ userId: user._id });
+
+//     const mergedData = { ...user.toObject(), ...userPoints?.toObject() };
+
+//     if (!user) {
+//       return res.status(400).json({ error: "User not found" });
+//     } else {
+//       return res.status(200).json({
+//         data: {user,userPoints},
+//         message: "User Fetched Successfully",
+//         status: true,
+//       });
+//     }
+//   } catch (error) {
+//     // console.error("Error authenticating user:", error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
 export const getUser = async (req: Request, res: Response) => {
   const { username } = req.query;
   try {
     const user = await User.findOne({ username });
-
     if (!user) {
       return res.status(400).json({ error: "User not found" });
-    } else {
-      return res.status(200).json({
-        data: user,
-        message: "User Fetched Successfully",
-        status: true,
-      });
     }
+
+    const userPoints = await Point.findOne({ userId: user._id });
+
+    // Convert the Mongoose document to a plain object
+    let userObject = user.toObject();
+
+    // Exclude specific fields
+    const { userBoosts, tasksCompleted, milestonesCompleted, referrals, ...filteredUser } = userObject;
+
+    // Merging filteredUser and userPoints into one object
+    const mergedData = { ...filteredUser, ...userPoints?.toObject() };
+
+    return res.status(200).json({
+      data: mergedData,
+      message: "User Fetched Successfully",
+      status: true,
+    });
   } catch (error) {
-    // console.error("Error authenticating user:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 };
