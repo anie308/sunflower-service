@@ -40,7 +40,7 @@ bot.start(async (ctx) => {
       ctx.replyWithPhoto(
         { url: imageUrl },
         {
-          caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}!`,
+          caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}! \n \n Sunflower Brawl is Tap to Earn game, earn in-game currency, and eventually receive a real token that will have value on the exchange.`,
           reply_markup: {
             inline_keyboard: [
               [Markup.button.url("Join community", `https://t.me/sunflower_coin`)],
