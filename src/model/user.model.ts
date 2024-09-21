@@ -52,6 +52,12 @@ const userSchema = new mongoose.Schema(
         ref: "Milestone",
       },
     ],
+    userBoosts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Boost",
+      },
+    ]
   },
   { timestamps: true }
 );
