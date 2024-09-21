@@ -3,10 +3,9 @@ import mongoose from "mongoose";
 const bonusSchema = new mongoose.Schema(
   {
     userId: {
-      type: mongoose.Types.ObjectId,
-      ref: "User", // Reference to the User model
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
-      unique: true, // Ensures one bonus entry per user
     },
     lastLogin: {
       type: Date,

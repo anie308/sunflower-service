@@ -13,6 +13,7 @@ import taskRouter from "./routes/task.route";
 import pingRouter from "./routes/ping.route";
 import milestoneRouter from './routes/milestones.route'
 import boostRouter from './routes/boosts.route'
+import bonusRouter from './routes/bonus.route'
 // import cabalRouter from "./routes/cabal.route";
 
 //express app
@@ -39,6 +40,7 @@ app.use("/api/task", taskRouter);
 app.use("/api/ping", pingRouter);
 app.use("/api/milestone", milestoneRouter);
 app.use("/api/boost", boostRouter);
+app.use("/api/bonus", bonusRouter);
 // app.use("/api/cabal", cabalRouter);
 
 const server = http.createServer(app);
@@ -46,5 +48,5 @@ WebSocketService(server);
 
 server.listen(port, () => {
   console.log(`Server listening on port localhost:${port}`);
-  bot.launch();
+  // bot.launch();
 });
