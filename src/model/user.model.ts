@@ -52,6 +52,14 @@ const userSchema = new mongoose.Schema(
         ref: "Milestone",
       },
     ],
+    // loginStreak: {
+    //   type: Number,
+    //   default: 0,
+    // },
+    // lastLogin: {
+    //   type: Date,
+    //   default: Date.now,
+    // },
     userBoosts: [
       {
         type: mongoose.Schema.Types.ObjectId,
