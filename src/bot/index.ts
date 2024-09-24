@@ -46,12 +46,12 @@ bot.start(async (ctx) => {
               [Markup.button.url("Join community", `https://t.me/sunflower_coin`)],
               [Markup.button.url("Sunflower on X", "https://www.x.com/Sunflower_Coin")],
       
-              //  [
-              //   Markup.button.webApp(
-              //     "🔥Test Brawl now!",
-              //     `https://7cfa-197-210-78-180.ngrok-free.app`
-              //   ),
-              // ],
+               [
+                Markup.button.webApp(
+                  "🔥Test Brawl now!",
+                  `https://1933-2c0f-2a80-5a-2a10-bcfc-375a-1f60-afcd.ngrok-free.app`
+                ),
+              ],
               [
                 Markup.button.webApp(
                   "Brawl now!",
