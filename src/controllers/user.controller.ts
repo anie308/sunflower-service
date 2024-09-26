@@ -28,7 +28,7 @@ export const registerUser = async (req: Request, res: Response) => {
     await newUser.save();
 
     const initialPoints = 30000;
-    const additionalPoints = 500;
+    const additionalPoints = 1000;
     const newPoints = new Point({
       userId: newUser._id,
       points: initialPoints + additionalPoints,
@@ -132,7 +132,7 @@ export const getReferredUsers = async (req: Request, res: Response) => {
           const userPoints = await Point.findOne({ userId: referral._id });
           return {
             ...referral._doc,
-            points: userPoints ? userPoints.points : 20000, // If no points found, default to 0
+            points: userPoints ? userPoints.points : 30000, // If no points found, default to 0
           };
         })
       );
