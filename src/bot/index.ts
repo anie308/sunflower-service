@@ -55,17 +55,10 @@ bot.start(async (ctx) => {
                   "https://www.x.com/Sunflower_Coin"
                 ),
               ],
-
-              // [
-              //   Markup.button.webApp(
-              //     "🔥Test Brawl now!",
-              //     `https://b28f-197-210-227-5.ngrok-free.app`
-              //   ),
-              // ],
               [
                 Markup.button.webApp(
                   "Brawl now!",
-                  `https://sunflower-flame.vercel.app/`
+                  `https://sunflowercoin.xyz/`
                 ),
               ],
             ],
