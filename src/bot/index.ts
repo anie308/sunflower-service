@@ -29,49 +29,56 @@ bot.start(async (ctx) => {
   const profilePicture = await getProfilePicture(ctx.from.id);
   const imageUrl =
     "https://res.cloudinary.com/wallnet/image/upload/v1726351913/bannerflow_pnnugl.png";
-  try {
-    const res = await axios.post(`${serverUrl}/api/user/register`, {
-      username,
-      referralCode,
-      profilePicture,
-    });
+  console.log(username, "username");
+  if (!username) {
+    return ctx.reply(
+      "Please set a username in your Telegram account settings to proceed."
+    );
+  } else {
+    try {
+      const res = await axios.post(`${serverUrl}/api/user/register`, {
+        username,
+        referralCode,
+        profilePicture,
+      });
 
-    if (res.status === 200 || res.status === 201) {
-      ctx.replyWithPhoto(
-        { url: imageUrl },
-        {
-          caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}! \nSunflower Brawl is Tap to Earn game, earn in-game currency, and eventually receive a real token that will have value on the exchange.`,
-          reply_markup: {
-            inline_keyboard: [
-              [
-                Markup.button.url(
-                  "Join community",
-                  `https://t.me/sunflower_coin`
-                ),
+      if (res.status === 200 || res.status === 201) {
+        ctx.replyWithPhoto(
+          { url: imageUrl },
+          {
+            caption: `Welcome to Sunflower Brawl Bot 🌻, @${ctx.from.username}! \nSunflower Brawl is Tap to Earn game, earn in-game currency, and eventually receive a real token that will have value on the exchange.`,
+            reply_markup: {
+              inline_keyboard: [
+                [
+                  Markup.button.url(
+                    "Join community",
+                    `https://t.me/sunflower_coin`
+                  ),
+                ],
+                [
+                  Markup.button.url(
+                    "Sunflower on X",
+                    "https://www.x.com/Sunflower_Coin"
+                  ),
+                ],
+                [
+                  Markup.button.webApp(
+                    "Brawl now!",
+                    `https://sunflowercoin.xyz/`
+                  ),
+                ],
               ],
-              [
-                Markup.button.url(
-                  "Sunflower on X",
-                  "https://www.x.com/Sunflower_Coin"
-                ),
-              ],
-              [
-                Markup.button.webApp(
-                  "Brawl now!",
-                  `https://sunflowercoin.xyz/`
-                ),
-              ],
-            ],
-          },
-        }
-      );
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.log("Error registering user:", error);
+      // ctx.reply("Internal server error");
     }
-  } catch (error) {
-    console.log("Error registering user:", error);
-    // ctx.reply("Internal server error");
-  }
 
-  console.log("started");
+    console.log("started");
+  }
 });
 
 // Handle button clicks

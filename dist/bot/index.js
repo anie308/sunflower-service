@@ -29,6 +29,7 @@ const getProfilePicture = async (userId) => {
 bot.start(async (ctx) => {
     const referralCode = ctx.payload;
     const username = ctx.from.username;
+    console.log(username, "username");
     const profilePicture = await getProfilePicture(ctx.from.id);
     const imageUrl = "https://res.cloudinary.com/wallnet/image/upload/v1726351913/bannerflow_pnnugl.png";
     try {
@@ -48,14 +49,8 @@ bot.start(async (ctx) => {
                         [
                             telegraf_1.Markup.button.url("Sunflower on X", "https://www.x.com/Sunflower_Coin"),
                         ],
-                        // [
-                        //   Markup.button.webApp(
-                        //     "🔥Test Brawl now!",
-                        //     `https://b28f-197-210-227-5.ngrok-free.app`
-                        //   ),
-                        // ],
                         [
-                            telegraf_1.Markup.button.webApp("Brawl now!", `https://sunflower-flame.vercel.app/`),
+                            telegraf_1.Markup.button.webApp("Brawl now!", `https://sunflowercoin.xyz/`),
                         ],
                     ],
                 },
