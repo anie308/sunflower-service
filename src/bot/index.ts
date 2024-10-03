@@ -7,15 +7,52 @@ import axios from "axios";
 
 const getProfilePicture = async (userId: any) => {
   try {
-    const photos = await bot.telegram.getUserProfilePhotos(userId);
-    if (photos.total_count > 0) {
-      const fileId = photos.photos[0][0].file_id;
-      const file = await bot.telegram.getFile(fileId);
-      const profilePictureUrl = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
-      console.log("Profile Picture URL:", profilePictureUrl); // Add this line
-      return profilePictureUrl;
+    // const photos = await bot.telegram.getUserProfilePhotos(userId);
+
+    const photosResponse = await axios.get(
+      `https://api.telegram.org/bot${token}/getUserProfilePhotos`,
+      {
+        params: {
+          user_id: userId,
+        },
+      }
+    );
+
+    if (photosResponse.data.result.total_count === 0) {
+      return null;
     }
-    return null;
+
+    if (photosResponse.data.ok && photosResponse.data.result.total_count > 0) {
+      const fileId = photosResponse.data.result.photos[0][0].file_id;
+
+      // Step 2: Get File Information
+      const fileResponse = await axios.get(
+        `https://api.telegram.org/bot${token}/getFile`,
+        {
+          params: {
+            file_id: fileId,
+          },
+        }
+      );
+
+      if (fileResponse.data.ok) {
+        const filePath = fileResponse.data.result.file_path;
+
+        // Step 3: Construct the Download URL
+        const fileUrl = `https://api.telegram.org/file/bot${token}/${filePath}`;
+
+        return fileUrl;
+      }
+    }
+
+    // if (photos.total_count > 0) {
+    //   const fileId = photos.photos[0][0].file_id;
+    //   const file = await bot.telegram.getFile(fileId);
+    //   const profilePictureUrl = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
+    //   console.log("Profile Picture URL:", profilePictureUrl); // Add this line
+    //   return profilePictureUrl;
+    // }
+    // return null;
   } catch (error) {
     console.error("Error getting profile photo:", error);
     return null;
@@ -59,6 +96,12 @@ bot.start(async (ctx) => {
                   Markup.button.url(
                     "Sunflower on X",
                     "https://www.x.com/Sunflower_Coin"
+                  ),
+                ],
+                [
+                  Markup.button.webApp(
+                    "Test Brawl now!",
+                    `https://9a85-197-210-227-58.ngrok-free.app`
                   ),
                 ],
                 [
