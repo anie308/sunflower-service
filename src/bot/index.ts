@@ -98,12 +98,12 @@ bot.start(async (ctx) => {
                     "https://www.x.com/Sunflower_Coin"
                   ),
                 ],
-                [
-                  Markup.button.webApp(
-                    "Test Brawl now!",
-                    `https://23d8-102-90-65-72.ngrok-free.app`
-                  ),
-                ],
+                // [
+                //   Markup.button.webApp(
+                //     "Test Brawl now!",
+                //     `https://23d8-102-90-65-72.ngrok-free.app`
+                //   ),
+                // ],
                 [
                   Markup.button.webApp(
                     "Brawl now!",
