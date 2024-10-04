@@ -26,7 +26,9 @@ app.use(express_1.default.json());
 app.use((0, morgan_1.default)("dev"));
 app.use((req, res, next) => {
     const allowedOrigins = [
-        "https://sunflower-flame.vercel.app/"
+        "https://sunflower-flame.vercel.app/",
+        "https://23d8-102-90-65-72.ngrok-free.app",
+        "localhost:5173",
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
