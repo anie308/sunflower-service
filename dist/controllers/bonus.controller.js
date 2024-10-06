@@ -123,11 +123,8 @@ const collectBonus = async (req, res) => {
 exports.collectBonus = collectBonus;
 // Example function to calculate bonus based on streak
 const calculateBonus = (streak) => {
-    // Example bonus logic: Increase bonus with streak
-    if (streak <= 5)
-        return 100; // First 5 days, give 50 points
-    else if (streak <= 10)
-        return 500; // Next 5 days, give 100 points
-    return 1000; // After 10 days, give 150 points
+    const baseBonus = 1000;
+    const additionalBonus = 1000 * (streak - 1); // Add 1000 for each additional day
+    return baseBonus + additionalBonus;
 };
 //# sourceMappingURL=bonus.controller.js.map
