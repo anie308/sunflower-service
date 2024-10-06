@@ -133,8 +133,10 @@ export const collectBonus = async (req: Request, res: Response) => {
 
 // Example function to calculate bonus based on streak
 const calculateBonus = (streak: number): number => {
+  if (streak === 0) return 1000; // Return 1000 if streak is 0
+
   const baseBonus = 1000;
   const additionalBonus = 1000 * (streak - 1); // Add 1000 for each additional day
-
+  
   return baseBonus + additionalBonus;
 };
